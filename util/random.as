@@ -1,20 +1,17 @@
-package  
+package util
 {
-	import flash.display.Sprite;
-	import util.*;
 	/**
 	 * ...
 	 * @author aeveis
 	 */
-	public class frutil extends Sprite
+	public class random 
 	{
 		
-		public function frutil() 
+		public function random() 
 		{
-			trace(random.rand_picks([0, 1, 2, 3, 4, 5, 6], 7));
 			
 		}
-			
+		
 		/**
 		 * Returns a psuedo-random number n, where min <= n < max. 
 		 * 
@@ -23,7 +20,7 @@ package
 		 * @return returns a psuedo-random number n, where min <= n < max. 
 		 */
 		static public function rand(min:Number = 0, max:Number = 1):Number {
-			return random.rand(min, max);
+			return Math.random() * (max - min) + min;
 		}
 		
 		/**
@@ -34,7 +31,7 @@ package
 		 * @return returns a psuedo-random number n as an integer, where min <= n <= max. 
 		 */
 		static public function rand_int(min:Number = 0, max:Number = 1):Number {
-			return random.rand_int(min, max);
+			return Math.round(Math.random() * (max - min) + min);
 		}
 		
 		/**
@@ -43,7 +40,7 @@ package
 		 * @return returns an randomly chosen object
 		 */
 		static public function rand_pick(objects:Array):* {
-			return random.rand_pick(objects);
+			return objects[rand_int(0, objects.length-1)];
 		}
 		
 		/**
@@ -53,7 +50,21 @@ package
 		 * @return returns an array of chosen objects
 		 */
 		static public function rand_picks(objects:Array, n:Number = 1):Array {
-			return random.rand_picks(objects, n);
+			var objs:Array = objects;
+			var nums:Array = new Array();
+			var i:int;
+			var r:Number;
+			
+			if (n > objects.length)
+				n = objects.length;
+				
+			for (i = 0; i < n; i++ ) {
+				r = rand_int(0, objs.length - 1);
+				nums.push(objs[r]);
+				objs = objs.slice(0, r).concat(objs.slice(r + 1, objs.length));
+			}
+			
+			return nums;
 		}
 	}
 
