@@ -1,17 +1,15 @@
 package  
 {
-	import flash.display.Sprite;
 	import util.*;
 	/**
 	 * ...
 	 * @author aeveis
 	 */
-	public class frutil extends Sprite
+	public class frutil
 	{
 		
 		public function frutil() 
 		{
-			trace(random.rand_picks([0, 1, 2, 3, 4, 5, 6], 7));
 			
 		}
 		
@@ -81,6 +79,17 @@ package
 		 */
 		static public function pdist(x1:Number, y1:Number, x2:Number, y2:Number):Number {
 			return geometry.pdist(x1, y1, x2, y2);
+		}
+		
+		/**
+		 *  generates simplex noise
+		 * @param	x Multiply x coordinate for more noise
+		 * @param	y Multiply y coordinate for more noise
+		 * @param	z
+		 * @return returns a value in the range of about -0.347 to 0.347
+		 */
+		static public function simplex(x:Number, y:Number, z:Number, min:Number = 0, max:Number = 1):Number {
+			return perlin.simplex(x, y, z, min, max);
 		}
 	}
 

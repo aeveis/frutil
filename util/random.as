@@ -66,6 +66,18 @@ package util
 			
 			return nums;
 		}
+		
+		/**
+		 * returns a random number, but tends to give high or low numbers (reverse bell curve)
+		 * @param	min lowest number in range
+		 * @param	max highest number in range
+		 * @return returns reverse bell curve random number
+		 */
+		static public function reverse_rand(min:Number = 0, max:Number=1):Number {
+			var n:Number = rand() - 0.5;
+			n >= 0?n = (1 - n):n = (1 + n);
+			return n * (max - min) + min;
+		}
 	}
 
 }
