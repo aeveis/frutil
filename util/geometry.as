@@ -37,17 +37,18 @@ package util
 		
 		/**
 		 * acclerates one object towards another
-		 * Note: parameters NEED to have x and y, velocity, and acceleration values
+		 * Note: obja needs at elast x and y, objb parameters NEED to have x and y, velocity, and acceleration values
 		 * @param	obja Object a attracter
 		 * @param	objb Object b attracted towards a
 		 */
 		static public function accel(obja:*, objb:*, str:Number=5, spring:Number=1.5, drag:Number=4):void {
-			d = dist(obja, objb);
-			if (d == 0) d = 1;
-			objb.acceleration.x = (obja.x - objb.x) / d * str * Math.pow(d, spring);
-			objb.acceleration.x += -drag * objb.velocity.x;
-			objb.acceleration.y = (obja.y - objb.y) / d * str * Math.pow(d, spring);
-			objb.acceleration.y += -drag * objb.velocity.y;
+			var d:Number = dist(obja, objb);
+			if (d != 0) {
+				objb.acceleration.x = ((obja.x - objb.x) / d * str * Math.pow(d, spring) +objb.acceleration.x)/2;
+				objb.acceleration.x += -drag * objb.velocity.x;
+				objb.acceleration.y = ((obja.y - objb.y) / d * str * Math.pow(d, spring) + objb.acceleration.y)/2;
+				objb.acceleration.y += -drag * objb.velocity.y;
+			}
 		}
 		
 		/**

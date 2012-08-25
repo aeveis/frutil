@@ -37,6 +37,17 @@ package
 			return random.rand_int(min, max);
 		}
 		
+		
+		/**
+		 * returns a random number, but tends to give high or low numbers (reverse bell curve)
+		 * @param	min lowest number in range
+		 * @param	max highest number in range
+		 * @return returns reverse bell curve random number
+		 */
+		static public function reverse_rand(min:Number = 0, max:Number=1):Number {
+			return random.reverse_rand(min,max);
+		}
+		
 		/**
 		 * Chooses a object randomly in an array
 		 * @param	objects an array of objects
