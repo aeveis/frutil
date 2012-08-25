@@ -38,10 +38,10 @@ package util
 		/**
 		 * acclerates one object towards another
 		 * Note: parameters NEED to have x and y, velocity, and acceleration values
-		 * @param	obja Object a
-		 * @param	objb Object attracted towards
+		 * @param	obja Object a attracter
+		 * @param	objb Object b attracted towards a
 		 */
-		static public function accel(obja:Object, objb:Object, str:Number=5, spring:Number=1.5, drag:Number=4):void {
+		static public function accel(obja:*, objb:*, str:Number=5, spring:Number=1.5, drag:Number=4):void {
 			d = dist(obja, objb);
 			if (d == 0) d = 1;
 			objb.acceleration.x = (obja.x - objb.x) / d * str * Math.pow(d, spring);
@@ -56,7 +56,7 @@ package util
 		 * @param	a point
 		 * @return returns magnitude from origin to a point
 		 */
-		static public function mag(p:Object):Number {
+		static public function mag(p:*):Number {
 			return Math.sqrt(Math.pow(p.x, 2) + Math.pow(p.y, 2));
 		}
 	}

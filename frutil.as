@@ -91,6 +91,26 @@ package
 		static public function simplex(x:Number, y:Number, z:Number, min:Number = 0, max:Number = 1):Number {
 			return perlin.simplex(x, y, z, min, max);
 		}
+		
+		/**
+		 * acclerates one object towards another
+		 * Note: parameters NEED to have x and y, velocity, and acceleration values
+		 * @param	obja Object a
+		 * @param	objb Object attracted towards
+		 */
+		static public function accel(obja:*, objb:*, str:Number=5, spring:Number=1.5, drag:Number=4):void {
+			geometry.accel(obja,objb,str,spring,drag);
+		}
+		
+		/**
+		 * finds magnitude from origin to a point
+		 * Note: parameters NEED to have x and y values
+		 * @param	a point
+		 * @return returns magnitude from origin to a point
+		 */
+		static public function mag(p:*):Number {
+			return geometry.mag(p);
+		}
 	}
 
 }
