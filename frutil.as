@@ -93,6 +93,17 @@ package
 		}
 		
 		/**
+		 * normalizes number n to 1 given min and max
+		 * @param	min minimun number
+		 * @param	max maximun number
+		 * @param	n number to be normalized
+		 * @return  normalized number
+		 */
+		static public function normalize(min:Number, max:Number, n:Number):Number {
+			return geometry.normalize(min, max, n);
+		}
+		
+		/**
 		 *  generates simplex noise
 		 * @param	x Multiply x coordinate for more noise
 		 * @param	y Multiply y coordinate for more noise
@@ -111,6 +122,16 @@ package
 		 */
 		static public function accel(obja:*, objb:*, str:Number=5, spring:Number=1.5, drag:Number=4):void {
 			geometry.accel(obja,objb,str,spring,drag);
+		}
+		
+		/**
+		 * follows one object towards another
+		 * Note: obja needs at least x and y, objb parameters NEED to have x and y, velocity, and acceleration values
+		 * @param	obja Object a attracter
+		 * @param	objb Object b attracted towards a
+		 */
+		static public function follow(obja:*, objb:*, speed:Number = 10):void {
+			geometry.follow(obja, objb, speed);
 		}
 		
 		/**

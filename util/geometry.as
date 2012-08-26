@@ -32,12 +32,23 @@ package util
 		 * @return returns distance between the two points
 		 */
 		static public function pdist(x1:Number, y1:Number, x2:Number, y2:Number):Number {
-			return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
+			return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+		}
+		
+		/**
+		 * normalizes number n to 1 given min and max
+		 * @param	min minimun number
+		 * @param	max maximun number
+		 * @param	n number to be normalized
+		 * @return  normalized number
+		 */
+		static public function normalize(min:Number, max:Number, n:Number):Number {
+			return (n - min) * (1 / (max - min));
 		}
 		
 		/**
 		 * acclerates one object towards another
-		 * Note: obja needs at elast x and y, objb parameters NEED to have x and y, velocity, and acceleration values
+		 * Note: obja needs at least x and y, objb parameters NEED to have x and y, velocity, and acceleration values
 		 * @param	obja Object a attracter
 		 * @param	objb Object b attracted towards a
 		 */
@@ -49,6 +60,18 @@ package util
 				objb.acceleration.y = ((obja.y - objb.y) / d * str * Math.pow(d, spring) + objb.acceleration.y)/2;
 				objb.acceleration.y += -drag * objb.velocity.y;
 			}
+		}
+		
+		/**
+		 * follows one object towards another
+		 * Note: obja needs at least x and y, objb parameters NEED to have x and y, velocity, and acceleration values
+		 * @param	obja Object a attracter
+		 * @param	objb Object b attracted towards a
+		 */
+		static public function follow(obja:*, objb:*, speed:Number = 10):void {
+			var d:Number = dist(obja, objb);
+			objb.velocity.x = normalize(0, d, obja.x - objb.x) * speed;
+			objb.velocity.y = normalize(0, d, obja.y - objb.y) * speed;
 		}
 		
 		/**
