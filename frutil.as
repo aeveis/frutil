@@ -67,6 +67,19 @@ package
 			return random.rand_picks(objects, n);
 		}
 		
+		/**
+		 * Returns a psuedo-random number n, where min <= n < val with range < n < max. 
+		 * 
+		 * @param	min lowest number in range
+		 * @param	max highest number in range
+		 * @param	val number to be avoided inbetween max and min
+		 * @param	range number range around val to be avoided
+		 * @return returns a psuedo-random number n, where min <= n < val with range < n < max. 
+		 */
+		static public function piecewise_rand(min:Number, max:Number, val:Number, range:Number):Number {
+			return random.piecewise_rand(min, max, val, range);
+		}
+		
 		//Geometry functions
 		
 		/**

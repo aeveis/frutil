@@ -78,6 +78,25 @@ package util
 			n >= 0?n = (1 - n):n = (1 + n);
 			return n * (max - min) + min;
 		}
+		
+		/**
+		 * Returns a psuedo-random number n, where min <= n < val with range < n < max. 
+		 * 
+		 * @param	min lowest number in range
+		 * @param	max highest number in range
+		 * @param	val number to be avoided inbetween max and min
+		 * @param	range number range around val to be avoided
+		 * @return returns a psuedo-random number n, where min <= n < val with range < n < max. 
+		 */
+		static public function piecewise_rand(min:Number, max:Number, val:Number, range:Number):Number {
+			
+			if ((val - range) < min || (val + range) > max) {
+				return Math.random() * (max - min) + min;
+			}
+			else {
+				return rand_int()?Math.random() * ((val - range) - min) + min:Math.random() * (max - (val + range)) + (val + range);
+			}
+		}
 	}
 
 }
